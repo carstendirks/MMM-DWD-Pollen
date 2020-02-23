@@ -37,7 +37,7 @@ modules: [
     }
   },
 ]
-'''
+```
 
 ## Configuration Settings
 Here is full documentation of options for the modules configuration:
@@ -48,6 +48,7 @@ Here is full documentation of options for the modules configuration:
 | `DWD_region` | A list of regions for Pollen information in Germany |
 
 DWD Regions:
+```
 10=Schleswig-Holstein und Hamburg 
 11=Inseln und Marschen 
 12=Geest,Schleswig-Holstein und Hamburg 
@@ -82,6 +83,7 @@ DWD Regions:
 121=Allgäu/Oberbayern/Bay. Wald
 122=Donauniederungen
 123=Bayern nördl. der Donau, o. Bayr. Wald, o. Mainfranken 124=Mainfranken
+```
 
 ## License
 
