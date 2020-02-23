@@ -6,7 +6,7 @@ For the data source & region data: egions: https://opendata.dwd.de/climate_envir
 This module is derived from: https://github.com/vincep5/MMM-Pollen
 
 ## Preview
-![screenshot](screenshot.PNG)
+![screenshot](screenshot.png)
 
 ## Installation
 1. Navigate to `modules`
