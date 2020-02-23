@@ -6,12 +6,15 @@ For the data source & region data: egions: https://opendata.dwd.de/climate_envir
 This module is derived from: https://github.com/vincep5/MMM-Pollen
 
 ## Preview
-![screenshot](screenshot.JPG)
+![screenshot](screenshot.PNG)
 
-## Using the module
-run git clone https://github.com/carstendirks/MMM-DWD-Pollen from inside your MagicMirror/modules folder
+## Installation
+1. Navigate to `modules`
+2. Run git clone https://github.com/carstendirks/MMM-DWD-Pollen from inside your MagicMirror/modules folder
 
+## Configuratin
 Add `MMM-DWD-Pollen` module to the `modules` array in the `config/config.js` file:
+
 ````javascript
 modules: [
   {
