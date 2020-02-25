@@ -29,62 +29,62 @@ Module.register("MMM-DWD-Pollen", {
 	function writePollen(pollenTabelle, pollenArt, pollenToday, pollenTomorrow) {
 	
 
-	var td1 = document.createElement("td");
-	td1.innerHTML = pollenArt;
+		var td1 = document.createElement("td");
+		td1.innerHTML = pollenArt;
+		
+		var td2 = document.createElement("td");
+		td2.innerHTML = pollenToday;
+		
+		var td3 = document.createElement("td");
+		td3.innerHTML = pollenTomorrow;
+		
 	
-	var td2 = document.createElement("td");
-	td2.innerHTML = pollenToday;
-	
-	var td3 = document.createElement("td");
-	td3.innerHTML = pollenTomorrow;
-	
-
-	//determine color
-        // Low (0-1) and (1)
-        // Low-Medium (1-2) 
-        // Medium (2) 
-        // Medium-High (2-3) 
-        // High (3) 
-        
-	if(pollenToday == "3") {
-        	td2.className = "pollen-high";
-        } else if(pollenToday == "2-3") {
-        	td2.className = "pollen-mediumhigh";
-        } else if(pollenToday == "2") {
-        	td2.className = "pollen-medium";
-        } else if(pollenToday == "1-2") {
-        	td2.className = "pollen-lowmedium";	
-        } else if(pollenToday == "1") {
-        	td2.className = "pollen-low";	
-        } else if(pollenToday == "0-1") {
-        	td2.className = "pollen-low";
-	} else if(pollenToday == "Keine Werte") {
-		td2.className = "pollen-nodata";
-	};
-	
-	if(pollenTomorrow == "3") {
-        	td3.className = "pollen-high";
-        } else if(pollenTomorrow == "2-3") {
-        	td3.className = "pollen-mediumhigh";
-        } else if(pollenTomorrow == "2") {
-        	td3.className = "pollen-medium";
-        } else if(pollenTomorrow == "1-2") {
-        	td3.className = "pollen-lowmedium";
-        } else if(pollenTomorrow == "1") {
-        	td3.className = "pollen-low";
-        } else if(pollenTomorrow == "0-1") {
-        	td3.className = "pollen-low";
-	} else if(pollenTomorrow == "Keine Werte") {
-		td3.className = "pollen-nodata";
-	};
-	
-	var tr = document.createElement("tr");
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-                
-        pollenTabelle.appendChild(tr);
-    }
+		//determine color
+	        // Low (0-1) and (1)
+	        // Low-Medium (1-2) 
+	        // Medium (2) 
+	        // Medium-High (2-3) 
+	        // High (3) 
+	        
+		if(pollenToday == "3") {
+	        	td2.className = "pollen-high";
+	        } else if(pollenToday == "2-3") {
+	        	td2.className = "pollen-mediumhigh";
+	        } else if(pollenToday == "2") {
+	        	td2.className = "pollen-medium";
+	        } else if(pollenToday == "1-2") {
+	        	td2.className = "pollen-lowmedium";	
+	        } else if(pollenToday == "1") {
+	        	td2.className = "pollen-low";	
+	        } else if(pollenToday == "0-1") {
+	        	td2.className = "pollen-low";
+		} else if(pollenToday == "Keine Werte") {
+			td2.className = "pollen-nodata";
+		};
+		
+		if(pollenTomorrow == "3") {
+	        	td3.className = "pollen-high";
+	        } else if(pollenTomorrow == "2-3") {
+	        	td3.className = "pollen-mediumhigh";
+	        } else if(pollenTomorrow == "2") {
+	        	td3.className = "pollen-medium";
+	        } else if(pollenTomorrow == "1-2") {
+	        	td3.className = "pollen-lowmedium";
+	        } else if(pollenTomorrow == "1") {
+	        	td3.className = "pollen-low";
+	        } else if(pollenTomorrow == "0-1") {
+	        	td3.className = "pollen-low";
+		} else if(pollenTomorrow == "Keine Werte") {
+			td3.className = "pollen-nodata";
+		};
+		
+		var tr = document.createElement("tr");
+	        tr.appendChild(td1);
+	        tr.appendChild(td2);
+	        tr.appendChild(td3);
+	                
+	        pollenTabelle.appendChild(tr);
+    	}
 
    	var DWDRegion = this.config.DWD_region;
 
@@ -114,6 +114,8 @@ Module.register("MMM-DWD-Pollen", {
         tr.appendChild(td2);
         tr.appendChild(td3);
         tbl.appendChild(tr);
+
+	var pollenDataAvailable = 0;
 	
 	// Check if you got a result set
         if (this.result) { 
@@ -122,10 +124,8 @@ Module.register("MMM-DWD-Pollen", {
 		this.result.content.forEach(function(r) {
 			
 			// Check Region Match
-			if (r.partregion_id == DWDRegion) {
-				
-				var pollenDataAvailable = 0;
-				
+			if ((r.partregion_id == DWDRegion) || ((r.region_id == DWDRegion) && (r.partregion_id == -1))) {
+						
 
 				// Erle
 				if ((r.Pollen.Erle.today != 0) || (r.Pollen.Erle.tomorrow != 0)) {
@@ -168,17 +168,18 @@ Module.register("MMM-DWD-Pollen", {
                 			pollenDataAvailable = 1;
 				};
 
-				// No Data available
-				if (pollenDataAvailable == 0) {
-					writePollen(tbl, "", "Keine Werte", "Keine Werte");
-				};
-
-
-                		
 			};
 		});
+		
+		};
+	
+
+	// No Data available
+	if (pollenDataAvailable == 0) {
+		writePollen(tbl, "", "Keine Werte", "Keine Werte");
+	};
             
-        }
+    
 
         wrapper.appendChild(tbl);
         return wrapper;
