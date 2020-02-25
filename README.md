@@ -29,12 +29,12 @@ Add `MMM-DWD-Pollen` module to the `modules` array in the `config/config.js` fil
 modules: [
   {
     module: "MMM-DWD-Pollen",
-    position: "bottom_righ",
+    position: "bottom_right",
     header: "Pollenwarnung",
     config: {
         updateInterval: 1 * 60 * 60 * 1000, // every 1 hour1
-        DWD_region: 92, //
-    }
+        DWD_region: 92, // Rhein Main
+    },
   },
 ]
 ```
@@ -45,7 +45,7 @@ Here is full documentation of options for the modules configuration:
 | Option        | Description   |
 | ------------- | ------------- |
 | `updateInterval` | Update interval how often information is retrieved. Attention: DWD updates only once per day at 11am CET|
-| `DWD_region` | DWD has certain partregions - following a list of regions for Pollen information in Germany |
+| `DWD_region` | DWD has certain part regions - following a list of part regions for Pollen information in Germany |
 
 DWD Regions:
 ```
