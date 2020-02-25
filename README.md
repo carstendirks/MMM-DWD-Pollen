@@ -45,7 +45,7 @@ Here is full documentation of options for the modules configuration:
 | Option        | Description   |
 | ------------- | ------------- |
 | `updateInterval` | Update interval how often information is retrieved. Attention: DWD updates only once per day at 11am CET|
-| `DWD_region` | A list of regions for Pollen information in Germany |
+| `DWD_partregion` | A list of regions for Pollen information in Germany |
 
 DWD Regions:
 ```
@@ -84,6 +84,9 @@ DWD Regions:
 122=Donauniederungen
 123=Bayern nördl. der Donau, o. Bayr. Wald, o. Mainfranken 124=Mainfranken
 ```
+
+There is a map that sows all regions (but you have to match it to the numbers shown above): https://www.dwd.de/DE/leistungen/gefahrenindizespollen/Gebiete.html?nn=16102&lsbId=463856
+
 
 ## License
 
