@@ -29,12 +29,12 @@ Add `MMM-DWD-Pollen` module to the `modules` array in the `config/config.js` fil
 modules: [
   {
     module: "MMM-DWD-Pollen",
-    position: "bottom_righ",
+    position: "bottom_right",
     header: "Pollenwarnung",
     config: {
         updateInterval: 1 * 60 * 60 * 1000, // every 1 hour1
-        DWD_region: 92, //
-    }
+        DWD_region: 92, // Rhein Main
+    },
   },
 ]
 ```
@@ -45,45 +45,38 @@ Here is full documentation of options for the modules configuration:
 | Option        | Description   |
 | ------------- | ------------- |
 | `updateInterval` | Update interval how often information is retrieved. Attention: DWD updates only once per day at 11am CET|
-| `DWD_region` | A list of regions for Pollen information in Germany |
+| `DWD_region` | DWD has certain part regions - following a list of part regions for Pollen information in Germany |
 
 DWD Regions:
 ```
-10=Schleswig-Holstein und Hamburg 
 11=Inseln und Marschen 
 12=Geest,Schleswig-Holstein und Hamburg 
 20=Mecklenburg-Vorpommern 
-30=Niedersachsen und Bremen
 31=Westl. Niedersachsen/Bremen 
 32=Östl. Niedersachsen 
-40=Nordrhein-Westfalen 
 41=Rhein.-Westfäl. Tiefland
 42=Ostwestfalen 43=Mittelgebirge NRW 
 50=Brandenburg und Berlin 
-60=Sachsen-Anhalt 
 61=Tiefland Sachsen-Anhalt 62=Harz
-70=Thüringen
 71=Tiefland Thüringen
 72=Mittelgebirge Thüringen
-80=Sachsen
 81=Tiefland Sachsen
 82=Mittelgebirge Sachsen
-90=Hessen
 91=Nordhessen und hess. Mittelgebirge
 92=Rhein-Main
-100=Rheinland-Pfalz und Saarland
 101=Rhein, Pfalz, Nahe und Mosel 
 102=Mittelgebirgsbereich Rheinland-Pfalz
 103=Saarland
-110=Baden-Württemberg
 111=Oberrhein und unteres Neckartal 
 112=Hohenlohe/mittlerer Neckar/Oberschwaben 
 113=Mittelgebirge Baden-Württemberg
-120=Bayern
 121=Allgäu/Oberbayern/Bay. Wald
 122=Donauniederungen
 123=Bayern nördl. der Donau, o. Bayr. Wald, o. Mainfranken 124=Mainfranken
 ```
+
+There is a map that sows all part regions (but you have to match it to the numbers shown above): https://www.dwd.de/DE/leistungen/gefahrenindizespollen/Gebiete.html?nn=16102&lsbId=463856
+
 
 ## License
 
