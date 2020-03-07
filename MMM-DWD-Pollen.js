@@ -9,6 +9,7 @@ Module.register("MMM-DWD-Pollen", {
         updateInterval: 1 * 60 * 60 * 1000, // every 1 hour
         fadeSpeed: 2000,
 	DWD_region: 92,
+	icon: false,
     },
 
     start: function() {
@@ -28,57 +29,85 @@ Module.register("MMM-DWD-Pollen", {
 	
 	function writePollen(pollenTabelle, pollenArt, pollenToday, pollenTomorrow) {
 	
+		function designPollen(tableElement, pollenValue) {
+			
+			
+			// Determine color:
+	        	// Low (0-1) and (1) -> Green
+	        	// Low-Medium (1-2)  -> Yellow
+	        	// Medium (2) -> Yellow
+	        	// Medium-High (2-3) -> red
+	        	// High (3) -> red
+
+			//var iconPollen = false; //this.config.icon;
+			
+
+			if (iconPollen) { // Show as icons
+			
+				if(pollenValue == "3") {
+					tableElement.innerHTML="<div class=\"fa fa-star\"></div>";
+					tableElement.innerHTML+="<div class=\"fa fa-star\"></div>";
+					tableElement.innerHTML+="<div class=\"fa fa-star\"></div>";
+	        			tableElement.className = "pollen-high";
+				} else if(pollenValue == "2-3") {
+					tableElement.innerHTML="<div class=\"fa fa-star\"></div>";
+					tableElement.innerHTML+="<div class=\"fa fa-star\"></div>";
+					tableElement.innerHTML+="<div class=\"fa fa-star-half\"></div>";
+					tableElement.className = "pollen-mediumhigh";
+	        		} else if(pollenValue == "2") {
+					tableElement.innerHTML="<div class=\"fa fa-star\"></div>";
+					tableElement.innerHTML+="<div class=\"fa fa-star\"></div>";
+					tableElement.className = "pollen-medium";
+	        		} else if(pollenValue == "1-2") {
+					tableElement.innerHTML="<div class=\"fa fa-star\"></div>";
+					tableElement.innerHTML+="<div class=\"fa fa-star-half\"></div>";
+					tableElement.className = "pollen-lowmedium";	
+	        		} else if(pollenValue == "1") {
+					tableElement.innerHTML="<div class=\"fa fa-star\"></div>";
+					tableElement.className = "pollen-low";	
+	        		} else if(pollenValue == "0-1") {
+					tableElement.innerHTML="<div class=\"fa fa-star-half\"></div>";
+					tableElement.className = "pollen-low";
+				} else if(pollenValue == "Keine Werte") {
+					tableElement.className = "pollen-nodata";
+				}; 
+			}  else { // Show as numbers
+
+				tableElement.innerHTML=pollenValue;
+
+				if(pollenValue == "3") {
+	        			tableElement.className = "pollen-high";
+				} else if(pollenValue == "2-3") {
+					tableElement.className = "pollen-mediumhigh";
+	        		} else if(pollenValue == "2") {
+					tableElement.className = "pollen-medium";
+	        		} else if(pollenValue == "1-2") {
+					tableElement.className = "pollen-lowmedium";	
+	        		} else if(pollenValue == "1") {
+					tableElement.className = "pollen-low";	
+	        		} else if(pollenValue == "0-1") {
+					tableElement.className = "pollen-low";
+	        		} else if(pollenValue == "0") {
+					tableElement.className = "pollen-low";
+				} else if(pollenValue == "Keine Werte") {
+					tableElement.className = "pollen-nodata";
+				}; 
+			};
+
+
+		};
 
 		var td1 = document.createElement("td");
 		td1.innerHTML = pollenArt;
 		
 		var td2 = document.createElement("td");
-		td2.innerHTML = pollenToday;
+		designPollen(td2, pollenToday);
 		
 		var td3 = document.createElement("td");
-		td3.innerHTML = pollenTomorrow;
-		
-	
-		//determine color
-	        // Low (0-1) and (1)
-	        // Low-Medium (1-2) 
-	        // Medium (2) 
-	        // Medium-High (2-3) 
-	        // High (3) 
-	        
-		if(pollenToday == "3") {
-	        	td2.className = "pollen-high";
-	        } else if(pollenToday == "2-3") {
-	        	td2.className = "pollen-mediumhigh";
-	        } else if(pollenToday == "2") {
-	        	td2.className = "pollen-medium";
-	        } else if(pollenToday == "1-2") {
-	        	td2.className = "pollen-lowmedium";	
-	        } else if(pollenToday == "1") {
-	        	td2.className = "pollen-low";	
-	        } else if(pollenToday == "0-1") {
-	        	td2.className = "pollen-low";
-		} else if(pollenToday == "Keine Werte") {
-			td2.className = "pollen-nodata";
-		};
-		
-		if(pollenTomorrow == "3") {
-	        	td3.className = "pollen-high";
-	        } else if(pollenTomorrow == "2-3") {
-	        	td3.className = "pollen-mediumhigh";
-	        } else if(pollenTomorrow == "2") {
-	        	td3.className = "pollen-medium";
-	        } else if(pollenTomorrow == "1-2") {
-	        	td3.className = "pollen-lowmedium";
-	        } else if(pollenTomorrow == "1") {
-	        	td3.className = "pollen-low";
-	        } else if(pollenTomorrow == "0-1") {
-	        	td3.className = "pollen-low";
-		} else if(pollenTomorrow == "Keine Werte") {
-			td3.className = "pollen-nodata";
-		};
-		
+		designPollen(td3, pollenTomorrow);
+			        
 		var tr = document.createElement("tr");
+
 	        tr.appendChild(td1);
 	        tr.appendChild(td2);
 	        tr.appendChild(td3);
@@ -87,6 +116,7 @@ Module.register("MMM-DWD-Pollen", {
     	}
 
    	var DWDRegion = this.config.DWD_region;
+	var iconPollen = this.config.icon;
 
         var wrapper = document.createElement("pollen");
 
@@ -120,6 +150,7 @@ Module.register("MMM-DWD-Pollen", {
 	// Check if you got a result set
         if (this.result) { 
 		
+
 		// Go through the result set
 		this.result.content.forEach(function(r) {
 			
@@ -168,8 +199,8 @@ Module.register("MMM-DWD-Pollen", {
                 			pollenDataAvailable = 1;
 				};
 
-			};
-		});
+			}; 
+		}); 
 		
 		};
 	

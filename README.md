@@ -12,6 +12,8 @@ This module is derived from: https://github.com/vincep5/MMM-Pollen
 
 ## Preview
 ![screenshot](screenshot.png)
+![screenshot2](screenshot2.png)
+
 
 ## Installation
 Clone this repository in your `modules` folder, and install dependencies:
@@ -34,6 +36,7 @@ modules: [
     config: {
         updateInterval: 1 * 60 * 60 * 1000, // every 1 hour1
         DWD_region: 92, // Rhein Main
+	icon: false // Show icons or not
     },
   },
 ]
@@ -46,6 +49,7 @@ Here is full documentation of options for the modules configuration:
 | ------------- | ------------- |
 | `updateInterval` | Update interval how often information is retrieved. Attention: DWD updates only once per day at 11am CET|
 | `DWD_region` | DWD has certain part regions - following a list of part regions for Pollen information in Germany |
+| `icon` | true: Show icons, false: Show numbers
 
 DWD Regions:
 ```
@@ -82,7 +86,7 @@ There is a map that sows all part regions (but you have to match it to the numbe
 
 ### The MIT License (MIT)
 
-Copyright © 2016 Joseph Bethge
+Copyright © 2020 Carsten Dirks
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
