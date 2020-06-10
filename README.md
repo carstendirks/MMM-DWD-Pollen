@@ -36,8 +36,8 @@ modules: [
     config: {
         updateInterval: 1 * 60 * 60 * 1000, // every 1 hour1
         DWD_region: 92, // Rhein Main
-	icon: false // Show icons or not
-    },
+	icon: false, // Show icons or not
+	pollenList: "Hasel,Erle,Esche,Birke,Graeser,Roggen,Beifuss,Ambrosia", // Which Pollen to display?
   },
 ]
 ```
@@ -49,7 +49,8 @@ Here is full documentation of options for the modules configuration:
 | ------------- | ------------- |
 | `updateInterval` | Update interval how often information is retrieved. Attention: DWD updates only once per day at 11am CET|
 | `DWD_region` | DWD has certain part regions - following a list of part regions for Pollen information in Germany |
-| `icon` | true: Show icons, false: Show numbers
+| `icon` | true: Show icons, false: Show numbers (optional)
+| `pollenList` | List all Pollen to display, default is all (optional)
 
 DWD Regions:
 ```
@@ -78,7 +79,6 @@ DWD Regions:
 122=Donauniederungen
 123=Bayern nördl. der Donau, o. Bayr. Wald, o. Mainfranken 124=Mainfranken
 ```
-
 There is a map that sows all part regions (but you have to match it to the numbers shown above): https://www.dwd.de/DE/leistungen/gefahrenindizespollen/Gebiete.html?nn=16102&lsbId=463856
 
 
