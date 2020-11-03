@@ -69,6 +69,9 @@ Module.register("MMM-DWD-Pollen", {
 	        		} else if(pollenValue == "0-1") {
 					tableElement.innerHTML="<div class=\"fa fa-star-half\"></div>";
 					tableElement.className = "pollen-low";
+				} else if(pollenValue == "0-1") {
+					tableElement.innerHTML="<div class=\"fa fa-star-o\"></div>";
+					tableElement.className = "pollen-low";	
 				} else if(pollenValue == "Keine Werte") {
 					tableElement.className = "pollen-nodata";
 				}; 
