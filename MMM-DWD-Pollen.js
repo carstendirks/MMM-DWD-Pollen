@@ -122,6 +122,8 @@ Module.register("MMM-DWD-Pollen", {
    	var DWDRegion = this.config.DWD_region;
 	var iconPollen = this.config.icon;
 	var pollenList = this.config.pollenList;
+	var showNullValue = false;
+	showNullValue = this.config.showNullValue;
 
         var wrapper = document.createElement("pollen");
 
@@ -165,7 +167,7 @@ Module.register("MMM-DWD-Pollen", {
 
 				// Erle
 				if (pollenList.indexOf("Erle") != -1) {
-					if ((r.Pollen.Erle.today != 0) || (r.Pollen.Erle.tomorrow != 0)) {
+					if (showNullValue) || ((r.Pollen.Erle.today != 0) || (r.Pollen.Erle.tomorrow != 0))) {
 						writePollen(tbl, "Erle", r.Pollen.Erle.today, r.Pollen.Erle.tomorrow);
                 				pollenDataAvailable = 1;
 					};
