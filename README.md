@@ -38,6 +38,7 @@ modules: [
         	DWD_region: 92, // Rhein Main
 		icon: false, // Show icons or not
 		pollenList: "Hasel,Erle,Esche,Birke,Graeser,Roggen,Beifuss,Ambrosia", // Which Pollen to display?
+		showNullValue: false, //Show value or symbol if value is 0
   	},
   },
 ]
@@ -52,6 +53,9 @@ Here is full documentation of options for the modules configuration:
 | `DWD_region` | DWD has certain part regions - following a list of part regions for Pollen information in Germany |
 | `icon` | true: Show icons, false: Show numbers (optional)
 | `pollenList` | List all Pollen to display, default is all (optional)
+| `showNullValue` | Show symbol or value even if value is 0 (optional)
+
+
 
 DWD Regions:
 ```
