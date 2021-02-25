@@ -34,12 +34,12 @@ modules: [
     	position: "bottom_right",
     	header: "Pollenwarnung",
     	config: {
-        	updateInterval: 1 * 60 * 60 * 1000, // every 1 hour1
+        	updateInterval: 1 * 60 * 60 * 1000, // every 1 hour
         	DWD_region: 92, // Rhein Main
 		icon: false, // Show icons or not
 		pollenList: "Hasel,Erle,Esche,Birke,Graeser,Roggen,Beifuss,Ambrosia", // Which Pollen to display?
 		showNullValue: false, //Show value or symbol if value is 0
-  	},
+  	}
   },
 ]
 ```
