@@ -28,7 +28,7 @@ Module.register("MMM-DWD-Pollen", {
     getDom: function() {
 
 	
-	function writePollen(pollenTabelle, pollenArt, pollenToday, pollenTomorrow) {
+	function writePollen(pollenTabelle, pollenArt, pollenToday, pollenTomorrow, timestamp) {
 	
 		function designPollen(tableElement, pollenValue) {
 			
@@ -103,12 +103,23 @@ Module.register("MMM-DWD-Pollen", {
 
 		var td1 = document.createElement("td");
 		td1.innerHTML = pollenArt;
-		
+
 		var td2 = document.createElement("td");
-		designPollen(td2, pollenToday);
+		//when data is from yesterday then output tomorrows data as todays
+		if (timestamp.getDay() === new Date().getDay() - 1 ) {
+			designPollen(td2, pollenTomorrow);
+		}
+		else {
+			designPollen(td2, pollenToday);
+		}
 		
 		var td3 = document.createElement("td");
-		designPollen(td3, pollenTomorrow);
+		if (timestamp.getDay() === new Date().getDay() ) {
+			designPollen(td3, pollenTomorrow);
+		}
+		else { // when data is not from today then display '-'
+			designPollen(td3, "-");
+		}
 			        
 		var tr = document.createElement("tr");
 
@@ -157,6 +168,8 @@ Module.register("MMM-DWD-Pollen", {
 	// Check if you got a result set
         if (this.result) { 
 		
+		var lastUpdateString = this.result.last_update.replace(" Uhr", "");
+		var lastUpdate = new Date(lastUpdateString);
 
 		// Go through the result set
 		this.result.content.forEach(function(r) {
@@ -168,56 +181,56 @@ Module.register("MMM-DWD-Pollen", {
 				// Erle
 				if (pollenList.indexOf("Erle") != -1) {
 					if (showNullValue || r.Pollen.Erle.today != 0 || r.Pollen.Erle.tomorrow != 0) {
-						writePollen(tbl, "Erle", r.Pollen.Erle.today, r.Pollen.Erle.tomorrow);
+						writePollen(tbl, "Erle", r.Pollen.Erle.today, r.Pollen.Erle.tomorrow, lastUpdate);
                 				pollenDataAvailable = 1;
 					};
 				};
 				// Roggen
 				if (pollenList.indexOf("Roggen") != -1) {
 					if (showNullValue || r.Pollen.Roggen.today != 0 || r.Pollen.Roggen.tomorrow != 0) {
-						writePollen(tbl, "Roggen", r.Pollen.Roggen.today, r.Pollen.Roggen.tomorrow);
+						writePollen(tbl, "Roggen", r.Pollen.Roggen.today, r.Pollen.Roggen.tomorrow, lastUpdate);
                 				pollenDataAvailable = 1;
 					};
 				};
 				// Ambrosia
 				if (pollenList.indexOf("Ambrosia") != -1) {
 					if (showNullValue || r.Pollen.Ambrosia.today != 0 || r.Pollen.Ambrosia.tomorrow != 0) {
-						writePollen(tbl, "Ambrosia", r.Pollen.Ambrosia.today, r.Pollen.Ambrosia.tomorrow);
+						writePollen(tbl, "Ambrosia", r.Pollen.Ambrosia.today, r.Pollen.Ambrosia.tomorrow, lastUpdate);
                 				pollenDataAvailable = 1;
 					};
 				};
 				// Esche
 				if (pollenList.indexOf("Esche") != -1) {
 					if (showNullValue || r.Pollen.Esche.today != 0 || r.Pollen.Esche.tomorrow != 0) {
-						writePollen(tbl, "Esche", r.Pollen.Esche.today, r.Pollen.Esche.tomorrow);
+						writePollen(tbl, "Esche", r.Pollen.Esche.today, r.Pollen.Esche.tomorrow, lastUpdate);
                 				pollenDataAvailable = 1;	
 					};
 				};
 				// Gräser
 				if (pollenList.indexOf("Graeser") != -1) {
 					if (showNullValue || r.Pollen.Graeser.today != 0 || r.Pollen.Graeser.tomorrow != 0) {
-						writePollen(tbl, "Gr&aumlser", r.Pollen.Graeser.today, r.Pollen.Graeser.tomorrow);
+						writePollen(tbl, "Gr&aumlser", r.Pollen.Graeser.today, r.Pollen.Graeser.tomorrow, lastUpdate);
                 				pollenDataAvailable = 1;
 					};
 				};
 				// Hasel
 				if (pollenList.indexOf("Hasel") != -1) {
 					if (showNullValue || r.Pollen.Hasel.today != 0 || r.Pollen.Hasel.tomorrow != 0) {
-						writePollen(tbl, "Hasel", r.Pollen.Hasel.today, r.Pollen.Hasel.tomorrow);
+						writePollen(tbl, "Hasel", r.Pollen.Hasel.today, r.Pollen.Hasel.tomorrow, lastUpdate);
                 				pollenDataAvailable = 1;
 					};
 				};
 				// Birke
 				if (pollenList.indexOf("Birke") != -1) {
 					if (showNullValue || r.Pollen.Birke.today != 0 || r.Pollen.Birke.tomorrow != 0) {
-						writePollen(tbl, "Birke", r.Pollen.Birke.today, r.Pollen.Birke.tomorrow);
+						writePollen(tbl, "Birke", r.Pollen.Birke.today, r.Pollen.Birke.tomorrow, lastUpdate);
                 				pollenDataAvailable = 1;
 					};
 				};
 				// Beifuß
 				if (pollenList.indexOf("Beifuss") != -1) {
 					if (showNullValue || r.Pollen.Beifuss.today != 0 || r.Pollen.Beifuss.tomorrow != 0) {
-						writePollen(tbl, "Beifu&szlig", r.Pollen.Beifuss.today, r.Pollen.Beifuss.tomorrow);
+						writePollen(tbl, "Beifu&szlig", r.Pollen.Beifuss.today, r.Pollen.Beifuss.tomorrow, lastUpdate);
                 				pollenDataAvailable = 1;
 					};
 				};
@@ -230,7 +243,7 @@ Module.register("MMM-DWD-Pollen", {
 
 	// No Data available
 	if (pollenDataAvailable == 0) {
-		writePollen(tbl, "", "Keine Werte", "Keine Werte");
+		writePollen(tbl, "", "Keine Werte", "Keine Werte", new Date());
 	};
             
     
