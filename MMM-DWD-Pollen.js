@@ -74,6 +74,8 @@ Module.register("MMM-DWD-Pollen", {
 					tableElement.className = "pollen-low";	
 				} else if(pollenValue == "Keine Werte") {
 					tableElement.className = "pollen-nodata";
+				} else if(pollenValue == "-") {
+					tableElement.className = "pollen-nodata";
 				}; 
 			}  else { // Show as numbers
 
@@ -94,6 +96,8 @@ Module.register("MMM-DWD-Pollen", {
 	        		} else if(pollenValue == "0") {
 					tableElement.className = "pollen-low";
 				} else if(pollenValue == "Keine Werte") {
+					tableElement.className = "pollen-nodata";
+				} else if(pollenValue == "-") {
 					tableElement.className = "pollen-nodata";
 				}; 
 			};
