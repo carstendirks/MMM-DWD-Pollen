@@ -1,0 +1,19 @@
+{
+  "name": "mmm-dwd-pollen",
+  "version": "1.0.0",
+  "description": "Magic Mirror DWD Pollen module",
+  "main": "MMM-DWD-Pollen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carstendirks/MMM-DWD-Pollen.git"
+  },
+  "author": "Carsten Dirks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carstendirks/MMM-DWD-Pollen/issues"
+  },
+  "homepage": "https://github.com/carstendirks/MMM-DWD-Pollen#readme"
+}
