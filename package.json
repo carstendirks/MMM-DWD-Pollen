@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/carstendirks/MMM-DWD-Pollen/issues"
   },
-  "homepage": "https://github.com/carstendirks/MMM-DWD-Pollen#readme"
+  "homepage": "https://github.com/carstendirks/MMM-DWD-Pollen#readme",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
 }
