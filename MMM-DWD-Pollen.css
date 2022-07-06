@@ -1,54 +1,46 @@
-.pollen
-{
-	width: 100%;
-	margin: 0 auto;
-	overflow: hidden;
-	white-space: nowrap;
-	box-sizing: border-box;
-}
-.tab-center
-{
-	text-align: center;
+.pollen {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
-.pollen-low
-{
-	color: green;
-	text-align: center;
+.tab-center {
+  text-align: center;
 }
 
-.pollen-lowmedium
-{
-	color: yellow;
-	text-align: center;
+.pollen-low {
+  color: green;
+  text-align: center;
 }
 
-.pollen-medium
-{
-	color: yellow;
-	text-align: center;
+.pollen-lowmedium {
+  color: yellow;
+  text-align: center;
 }
 
-.pollen-mediumhigh
-{
-	color: red;
-	text-align: center;
+.pollen-medium {
+  color: yellow;
+  text-align: center;
 }
 
-.pollen-high
-{
-	color: red;
-	text-align: center;
+.pollen-mediumhigh {
+  color: red;
+  text-align: center;
 }
 
-.pollen-nodata
-{
-	color: white;
-	text-align: center;
+.pollen-high {
+  color: red;
+  text-align: center;
 }
 
-.pollen-padding
-{
-	padding-left: 5px;
-	padding-right: 5px;
+.pollen-nodata {
+  color: white;
+  text-align: center;
+}
+
+.pollen-padding {
+  padding-left: 5px;
+  padding-right: 5px;
 }
