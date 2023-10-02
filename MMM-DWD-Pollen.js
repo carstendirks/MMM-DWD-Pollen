@@ -30,6 +30,7 @@ Module.register("MMM-DWD-Pollen", {
       pollenArt,
       pollenToday,
       pollenTomorrow,
+      pollenDayafter_to,
       timestamp
     ) {
       function designPollen(tableElement, pollenValue) {
@@ -105,7 +106,14 @@ Module.register("MMM-DWD-Pollen", {
       }
 
       const td1 = document.createElement("td");
-      td1.innerHTML = pollenArt;
+      if (pollenArt === "Graeser") {
+	td1.innerHTML = "Gr&aumlser";
+      } else if (pollenArt === "Beifuss") {
+	td1.innerHTML = "Beifu&szlig";
+      } else {
+      	td1.innerHTML = pollenArt;
+      }
+      td1.className = "xsmall";
 
       const td2 = document.createElement("td");
       //when data is from yesterday then output tomorrow's data as today's
@@ -116,17 +124,27 @@ Module.register("MMM-DWD-Pollen", {
       }
 
       const td3 = document.createElement("td");
+        //when data is from yesterday then output day after tomorrow's data as tomorrow's
       if (timestamp.getDay() === new Date().getDay()) {
         designPollen(td3, pollenTomorrow);
       } else {
-        // when data is not from today then display '-'
-        designPollen(td3, "-");
+        // when data is not from tomorrow then display '-'
+        designPollen(td3, pollenDayafter_to);
+      }
+      
+      const td4 = document.createElement("td");
+      if (timestamp.getDay() === new Date().getDay()) {
+        designPollen(td4, pollenDayafter_to);
+      } else {
+        // when data is not from day after tomorrow then display '-'
+        designPollen(td4, "-");
       }
 
       const tr = document.createElement("tr");
       tr.appendChild(td1);
       tr.appendChild(td2);
       tr.appendChild(td3);
+      tr.appendChild(td4);
       pollenTabelle.appendChild(tr);
     }
 
@@ -148,18 +166,27 @@ Module.register("MMM-DWD-Pollen", {
     //header row
     const tbl = document.createElement("table");
     const tr = document.createElement("tr");
-    const td1 = document.createElement("td");
+    const td1 = document.createElement("th");
     td1.innerHTML = "";
-    const td2 = document.createElement("td");
+    td1.width="25%";
+    const td2 = document.createElement("th");
     td2.innerHTML = "Heute";
-    td2.className = "tab-center";
-    const td3 = document.createElement("td");
+    td2.className = "tab-center xsmall";
+    td2.width="25%";
+    const td3 = document.createElement("th");
     td3.innerHTML = "Morgen";
-    td3.className = "tab-center";
+    td3.className = "tab-center xsmall";
+    td3.width="25%";
+    const td4 = document.createElement("th");
+    td4.innerHTML = "&Uumlbermorgen";
+    td4.className = "tab-center xsmall";
+    td4.width="25%";
+  
 
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
+    tr.appendChild(td4);
     tbl.appendChild(tr);
 
     let pollenDataAvailable = 0;
@@ -174,13 +201,15 @@ Module.register("MMM-DWD-Pollen", {
           if (
             showNullValue ||
             r.Pollen[name].today !== "0" ||
-            r.Pollen[name].tomorrow !== "0"
+            r.Pollen[name].tomorrow !== "0" ||
+	    r.Pollen[name].dayafter_to !== "0"
           ) {
             writePollen(
               tbl,
               name,
               r.Pollen[name].today,
               r.Pollen[name].tomorrow,
+	      r.Pollen[name].dayafter_to,
               lastUpdate
             );
             pollenDataAvailable = 1;
