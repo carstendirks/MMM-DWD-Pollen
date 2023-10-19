@@ -33,6 +33,9 @@ Module.register("MMM-DWD-Pollen", {
       pollenDayafter_to,
       timestamp
     ) {
+      if (timestamp === undefined) {
+	      timestamp = new Date();
+      };
       function designPollen(tableElement, pollenValue) {
         // Determine color:
         // Low (0-1) and (1) -> Green
