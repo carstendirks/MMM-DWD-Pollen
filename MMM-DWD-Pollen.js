@@ -236,7 +236,7 @@ Module.register("MMM-DWD-Pollen", {
     }
     // No Data available
     if (pollenDataAvailable === 0) {
-      writePollen(tbl, "", "Keine Werte", "Keine Werte", new Date());
+      writePollen(tbl, "", "Keine Werte", "Keine Werte", "Keine Werte");
     }
     wrapper.appendChild(tbl);
     return wrapper;
