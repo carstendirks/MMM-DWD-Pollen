@@ -236,7 +236,13 @@ Module.register("MMM-DWD-Pollen", {
     }
     // No Data available
     if (pollenDataAvailable === 0) {
-      writePollen(tbl, "", "Keine Werte", "Keine Werte", "Keine Werte");
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.innerHTML = "Keine Werte";
+      td.className = "pollen-nodata";
+      td.colSpan = 4;
+      tr.appendChild(td);
+      tbl.appendChild(tr);
     }
     wrapper.appendChild(tbl);
     return wrapper;
