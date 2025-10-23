@@ -38,6 +38,8 @@
 .pollen-nodata {
   color: white;
   text-align: center;
+  font-size: 0.5em;
+  opacity: 0.6;
 }
 
 .pollen-padding {
