@@ -31,6 +31,7 @@
   --sev-high-bg:        rgba(196, 37, 37, 0.20);
 
   width: 100%;
+  min-width: 280px;
   box-sizing: border-box;
 }
 
@@ -52,6 +53,7 @@
 
 .dwd-pollen-table {
   width: 100%;
+  min-width: 250px;
   border-collapse: collapse;
 }
 
@@ -114,6 +116,7 @@
 .dwd-vis-header {
   display: flex;
   align-items: center;
+  min-width: 240px;
   padding-bottom: 4px;
   margin-bottom: 2px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -137,6 +140,7 @@
   display: flex;
   align-items: center;
   min-height: 28px;
+  min-width: 240px;
 }
 
 /* Icon + name */
@@ -173,6 +177,7 @@
   flex: 1;
   display: flex;
   gap: 4px;
+  min-width: 0;
 }
 
 /* Individual cell */
@@ -180,6 +185,7 @@
   flex: 1;
   position: relative;
   height: 22px;
+  min-width: 45px;
   border-radius: 4px;
   overflow: hidden;
   display: flex;
